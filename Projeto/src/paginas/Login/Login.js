@@ -13,10 +13,9 @@ function Login() {
     <Campo id="email" type="email" name="email" placeholder="email"/>
     <Legenda htmlFor="senha"> Senha </Legenda> 
     <Campo id="senha" type="password" name="senha" placeholder="senha"/>
-    <Link url="/conta"> Criar uma conta</Link>
-    <Link url="/login"> Fazer login</Link>
-    <Botao desabilitado>Enviar</Botao>
     <Botao>Enviar</Botao>
+    <Link url="/conta"> Criar uma conta</Link>
+
     {/* <Botao className="botao-danger">Enviar</Botao> */}
     </main>
   )
