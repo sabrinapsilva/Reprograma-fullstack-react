@@ -5,18 +5,23 @@ class Campo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            erro: 'Campo obrigatório'
+            erro: ''
         }
     }
 
     valida = (evento) => {
-        const alvo = evento.target
+        const input = evento.target
 
-        if (this.props.obrigatorio && alvo.value.trim() === '') {
-            const state = {
-                erro:'Campo obrigatório'
-            }
-            this.setState(state)
+        if (this.props.required && input.value.trim() === '') {
+            this.setState({erro: 'Campo obrigatório'})
+
+        } else if(this.props.minLength && input.value.length < this.props.minLength ){
+            this.setState({erro: `Digite pelo menos ${this.props.minLength} caracteres`})
+        } else if (this.props.pattern && !this.props.pattern.test(input.value)) {
+            this.setState({erro:'valor invalido'})
+
+        }else{
+            this.setState({erro: ''})   
         }
     }
 

@@ -10,9 +10,9 @@ function Login() {
     <h1> Login</h1>
     <p>Entre com seu login</p>
     <Legenda htmlFor="email"> Email </Legenda> 
-    <Campo id="email" type="email" name="email" placeholder="email"/>
+    <Campo id="email" type="email" name="email" placeholder="email" required minLength={10}/>
     <Legenda htmlFor="senha"> Senha </Legenda> 
-    <Campo id="senha" type="password" name="senha" placeholder="senha"/>
+    <Campo id="senha" type="password" name="senha" placeholder="senha" required minLength={6}/>
     <Botao>Enviar</Botao>
     <Link url="/conta"> Criar uma conta</Link>
 
