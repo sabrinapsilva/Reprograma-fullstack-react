@@ -16,7 +16,7 @@ function Conta() {
     <Campo id="telefone" type="tel" name="telefone" placeholder="Telefone" required/>
     
     <Legenda htmlFor="email"> Email </Legenda> 
-    <Campo id="email" type="email" name="email" placeholder="E-mail" required pattern = {/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi}/>
+    <Campo id="email" type="email" name="email" placeholder="E-mail" required />
 
     <Legenda htmlFor="senha"> Senha </Legenda> 
     <Campo id="senha" type="password" name="senha" placeholder="Senha" required minLength={6}/>
