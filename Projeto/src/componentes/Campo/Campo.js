@@ -4,10 +4,15 @@ import './Campo.css'
 class Campo extends Component {
     constructor(props) {
         super(props)
+        this.valor = ''
         this.state = {
             modificado: false,
             erro: ''
         }
+    }
+
+    getValor() {
+        return this.valor;
     }
 
     temErro() {
@@ -19,8 +24,8 @@ class Campo extends Component {
     }
         valida = (evento) => {
             const input = evento.target
-            const { required, minLength } = this.props
             const { value, type } = input
+            const { required, minLength } = this.props
             const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
             let mensagem = ''
 
@@ -34,6 +39,8 @@ class Campo extends Component {
 
             }
             this.setState({ modificado: true , erro: mensagem}, this.props.onChange)
+            
+            this.valor = value
         }
 
 

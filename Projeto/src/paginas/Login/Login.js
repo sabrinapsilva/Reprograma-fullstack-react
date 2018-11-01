@@ -15,41 +15,56 @@ class Login extends Component {
     this.state = { desabilitado: true }
   }
 
+  enviaDados = (evento) => {
+    evento.preventDefault()
+
+    const dados = {
+      email: this.emailRef.current.getValor(),
+      senha: this.senhaRef.current.getValor()
+    }
+    this.props.onEnviar(dados)
+
+    this.props.historico.push('/')
+
+  }
   handChange = (evento) => {
 
     const campoEmail = this.emailRef.current
     const campoSenha = this.senhaRef.current
+
     if (campoEmail.temErro() || campoSenha.temErro()) {
       this.setState({ desabilitado: true })
     } else (
       this.setState({ desabilitado: false })
     )
   }
+
   render() {
     return (
       <main className="login">
         <h1> Login</h1>
         <p>Entre com seu login</p>
-        <Legenda htmlFor="email"> Email </Legenda>
-        <Campo id="email"
-          ref={this.emailRef}
-          type="email"
-          name="email"
-          placeholder="email"
-          required
-          onChange={this.handChange} />
-        <Legenda htmlFor="senha"> Senha </Legenda>
-        <Campo id="senha"
-          type="password"
-          ref={this.senhaRef}
-          name="senha"
-          placeholder="senha"
-          required
-          minLength={6}
-          onChange={this.handChange} />
-        <Botao desabilitado={this.state.desabilitado}>Enviar</Botao>
+        <form onSubmit={this.enviaDados}>
+          <Legenda htmlFor="email"> Email </Legenda>
+          <Campo id="email"
+            ref={this.emailRef}
+            type="email"
+            name="email"
+            placeholder="email"
+            required
+            onChange={this.handChange} />
+          <Legenda htmlFor="senha"> Senha </Legenda>
+          <Campo id="senha"
+            type="password"
+            ref={this.senhaRef}
+            name="senha"
+            placeholder="senha"
+            required
+            minLength={6}
+            onChange={this.handChange} />
+          <Botao desabilitado={this.state.desabilitado}>Enviar</Botao>
+        </form>
         <Link url="/conta"> Criar uma conta</Link>
-
       </main>
     )
   }
