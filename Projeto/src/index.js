@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './index.css'
+import Navbar from './componentes/Navbar/Navbar'
 import QuemSomos from './paginas/QuemSomos/QuemSomos'
 import Contato from './paginas/Contato/Contato'
 import Login from './paginas/Login/Login'
@@ -13,28 +14,33 @@ import Home from './paginas/Home/Home'
 let usuario = JSON.parse(localStorage.getItem('usuario'))
 
 function logaUsuario(dados) {
-    const json =JSON.stringify(dados)
+    const json = JSON.stringify(dados)
     localStorage.setItem('usuario', json)
     usuario = dados
+}
+
+function deslogaUsuario() {
+    localStorage.removeItem('usuario')
+    usuario = null
 }
 
 function App() {
     return (
         <div className="app">
-            {}
+            <Navbar usuario={usuario} deslogaUsuario={deslogaUsuario} />
 
             <Switch>
                 <Route path="/" exact render={() => {
-                    return usuario ? <Home/> : <Redirect to="/login"/>
+                    return usuario ? <Home /> : <Redirect to="/login" />
                 }} />
-                <Route path="/login" render={ (props) => {
+                <Route path="/login" render={(props) => {
                     return <Login historico={props.history} onEnviar={logaUsuario} />
                 }} />
                 <Route path="/conta" component={Conta} />
                 <Route path="/QuemSomos" component={QuemSomos} />
                 <Route path="/Contato" component={Contato} />
-                
                 <Route component={NaoEncontrada} />
+
             </Switch>
         </div>
     )
