@@ -42,7 +42,7 @@ class Menu extends Component {
 
         return (
             <nav className="navbar-menu">
-                <a className={classesDoBotao} onClick={this.abreOuFechaMenu}>
+                <a href className={classesDoBotao} onClick={this.abreOuFechaMenu}>
                     Menu
                 </a>
 
