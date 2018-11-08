@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import {deslogaUsuario} from '../../redux/actions' 
+import { Link, withRouter } from 'react-router-dom'
 import Menu from '../Menu/Menu'
 import logo from './logo.png'
 import './Navbar.css'
@@ -15,4 +17,5 @@ function Navbar(props) {
     )
 }
 
-export default Navbar
+export default withRouter (connect ((state) => ({usuario: state.usuario }), {deslogaUsuario}
+)(Navbar))

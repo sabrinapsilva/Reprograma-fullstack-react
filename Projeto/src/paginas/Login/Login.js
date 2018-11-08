@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { logaUsuario } from '../../redux/actions'
 import Link from '../../componentes/Link/Link'
 import Botao from '../../componentes/Botao/Botao'
 import Legenda from '../../componentes/Legenda/Legenda'
@@ -18,13 +20,16 @@ class Login extends Component {
   enviaDados = (evento) => {
     evento.preventDefault()
 
-    const dados = {
-      email: this.emailRef.current.getValor(),
-      senha: this.senhaRef.current.getValor()
-    }
-    this.props.onEnviar(dados)
+    const campoEmail = this.emailRef.current
+    const campoSenha = this.senhaRef.current 
 
-    this.props.historico.push('/')
+    const dados = {
+      email: campoEmail.getValor(),
+      senha: campoSenha.getValor()
+    }
+    this.props.logaUsuario(dados)
+
+    this.props.history.push('/')
 
   }
   handChange = (evento) => {
@@ -69,4 +74,5 @@ class Login extends Component {
     )
   }
 }
-export default Login
+
+export default connect(null, {logaUsuario}) (Login)
