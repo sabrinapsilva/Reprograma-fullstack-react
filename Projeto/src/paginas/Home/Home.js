@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Postit from '../../componentes/Postit/Postit'
 import carregandoImg from './carregando.svg'
 import './Home.css'
 
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.state = { carregandoImg: true }
+        this.state = { carregandoImg: false }
     }
 
     render() {
@@ -21,7 +22,18 @@ class Home extends Component {
                 <img className = "home__loading" src={carregandoImg} alt="Carregando"/>
             ) : (
                 <div>
-                    Aqui listar postit
+                    <Postit />
+                    
+                    <div>
+                        {this.props.postits.map(postit =>(
+                            <Postit 
+                            key={postit.id}
+                            id={postit.id}
+                            titulo = {postit.titulo}
+                            texto = {postit.texto}
+                            />
+                        ))}
+                    </div>
                 </div>
             )}
             </main>
@@ -29,4 +41,8 @@ class Home extends Component {
     }
 }
 
-export default connect((state) => ({ usuario: state.usuario }))(Home)
+export default connect((state) => ({ 
+    usuario: state.usuario,
+    postits: state.postits 
+})
+)(Home)
